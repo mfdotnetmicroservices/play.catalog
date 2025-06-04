@@ -55,4 +55,9 @@ dotnet pack src/Play.Catalog.Contracts/ --configuration Release -p:PackageVersio
 dotnet nuget push ../packages/Play.Catalog.Contracts.${version}.nupkg --api-key ${gh_pat} --source "github"
 ```
 
-;P
+
+## Build the docker image
+```powershell 
+
+
+```
