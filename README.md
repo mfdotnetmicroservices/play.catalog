@@ -56,8 +56,29 @@ dotnet nuget push ../packages/Play.Catalog.Contracts.${version}.nupkg --api-key 
 ```
 
 
-## Build the docker image
-```powershell 
 
+
+## Build the docker image
+
+
+
+
+
+VVV not complete yet!!! VVV
+
+### windows (powershell)
+```powershell
+
+$env:GH_OWNER="mfdotnetmicroservices"
+$env:GH_PAT="[PAT HERE]"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
+```
+
+### macOS (bash)
+```bash
+
+export GH_OWNER="mfdotnetmicroservices"
+export GH_PAT="[PAT HERE]"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
 
 ```
