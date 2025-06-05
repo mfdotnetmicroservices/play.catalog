@@ -59,16 +59,9 @@ dotnet nuget push ../packages/Play.Catalog.Contracts.${version}.nupkg --api-key 
 
 
 ## Build the docker image
-
-
-
-
-
-VVV not complete yet!!! VVV
-
 ### windows (powershell)
 ```powershell
-
+-beta
 $env:GH_OWNER="mfdotnetmicroservices"
 $env:GH_PAT="[PAT HERE]"
 docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
@@ -80,5 +73,28 @@ docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
 export GH_OWNER="mfdotnetmicroservices"
 export GH_PAT="[PAT HERE]"
 docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
+
+```
+
+
+
+
+
+
+## Run the docker image
+
+### windows (powershell)
+```powershell
+$version="1.0.2"
+docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq --network playinfra_default play.catalog:$version  
+```
+
+
+
+## Run the docker image
+### macOS (bash)
+```bash
+version="1.0.2"
+docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq --network playinfra_default play.catalog:$version
 
 ```
