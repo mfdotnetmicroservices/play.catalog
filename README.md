@@ -64,15 +64,18 @@ dotnet nuget push ../packages/Play.Catalog.Contracts.${version}.nupkg --api-key 
 -beta
 $env:GH_OWNER="mfdotnetmicroservices"
 $env:GH_PAT="[PAT HERE]"
-docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
+$acrname="playeconomyacr"
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t "$acrname.azurecr.io/play.catalog:$version" .
 ```
+
+
 
 ### macOS (bash)
 ```bash
-
+$acrname="playeconomyacr"
 export GH_OWNER="mfdotnetmicroservices"
 export GH_PAT="[PAT HERE]"
-docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
+docker build --secret id=GH_OWNER --secret id=GH_PAT -t "$acrname.azurecr.io/play.catalog:$version" .
 
 ```
 
@@ -98,5 +101,22 @@ version="1.0.3"
 cosmosDbConnString="[CONN STRING HERE]"
 serviceBusConnString="[CONN STRING HERE]"
 docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__ConnectionString=$cosmosDbConnString -e ServiceBusSettings__ConnectionString=$serviceBusConnString -e ServiceSettings__MessageBroker="SERVICEBUS" play.catalog:$version
+
+```
+
+
+## Publishing the Docker image
+### For PC
+```powershell
+
+$acrname="playeconomyacr"
+az acr login --name $acrname
+docker push "$acrname.azurecr.io/play.catalog:$version"
+```
+
+### For MacOS
+```bash
+az acr login --name "$acrname"
+docker push "$acrname.azurecr.io/play.catalog:$version"
 
 ```
