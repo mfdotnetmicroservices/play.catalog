@@ -6,7 +6,7 @@ Play Economy Catalog microservice
 # Create and publish package
 ### For Windows (PowerShell): 
 ```powershell 
-$version="1.0.2"
+$version="1.0.3"
 $owner="mfdotnetmicroservices"
 $gh_pat="[PAT HERE]"
 
@@ -18,7 +18,7 @@ dotnet nuget push ..\packages\Play.Catalog.$version.nupkg --api-key $gh_pat --so
 
 ### For macOS
 ```bash
-version="1.0.2"
+version="1.0.3"
 owner="mfdotnetmicroservices"
 gh_pat="[PAT HERE]"
 
@@ -33,7 +33,7 @@ dotnet nuget push ../packages/Play.Catalog.${version}.nupkg --api-key ${gh_pat} 
 
 ### For Windows (PowerShell): 
 ```powershell 
-$version="1.0.2"
+$version="1.0.3"
 $owner="mfdotnetmicroservices"
 $gh_pat="[PAT HERE]"
 
@@ -46,7 +46,7 @@ dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $g
 
 ### For macOS
 ```bash
-version="1.0.2"
+version="1.0.3"
 owner="mfdotnetmicroservices"
 gh_pat="[PAT HERE]"
 
@@ -85,8 +85,8 @@ docker build --secret id=GH_OWNER --secret id=GH_PAT -t play.catalog:$version .
 
 ### windows (powershell)
 ```powershell
-$version="1.0.2"
-docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq --network playinfra_default play.catalog:$version  
+$version="1.0.3"
+docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__ConnectionString=mongo -e RabbitMQSettings__Host=rabbitmq --network playinfra_default play.catalog:$version  
 ```
 
 
@@ -94,7 +94,9 @@ docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__Host=mongo -
 ## Run the docker image
 ### macOS (bash)
 ```bash
-version="1.0.2"
-docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__Host=mongo -e RabbitMQSettings__Host=rabbitmq --network playinfra_default play.catalog:$version
+version="1.0.3"
+cosmosDbConnString="[CONN STRING HERE]"
+serviceBusConnString="[CONN STRING HERE]"
+docker run -it --rm -p 5009:5009 --name catalog -e MongoDbSettings__ConnectionString=$cosmosDbConnString -e ServiceBusSettings__ConnectionString=$serviceBusConnString -e ServiceSettings__MessageBroker="SERVICEBUS" play.catalog:$version
 
 ```
