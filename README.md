@@ -121,7 +121,7 @@ docker push "$acrname.azurecr.io/play.catalog:$version"
 
 ```
 
-#### new!!!!! VVV
+
 
 ## Create the kubernetes namespace
 ## For windows
