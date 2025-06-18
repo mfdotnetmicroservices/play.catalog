@@ -141,20 +141,6 @@ kubectl create namespace "$namespace"
 
 
 
-
-## Create the Kubernetes pod
-### For windows
-```powershell
-$namespace="catalog"
-kubectl apply -f .\kubernetes\catalog.yaml -n $namespace 
-```
-
-### For mac
-```bash
-namespace="catalog"
-kubectl apply -f ./kubernetes/catalog.yaml -n "$namespace"
-```
-
 ## Creating the Azure Managed Identity and granting it access to Key Vault secrets
 
  ### Mac
@@ -183,4 +169,11 @@ export AKS_OIDC_ISSUER="$(az aks show --name "${appnamecluster}" --resource-grou
 
 
 az identity federated-credential create --name ${namespace} --identity-name "${namespace}" --resource-group "${appnameRg}" --issuer "${AKS_OIDC_ISSUER}" --subject system:serviceaccount:"${namespace}":"${namespace}-serviceaccount" --audience api://AzureADTokenExchange 
+```
+
+
+## Install the helm chart
+```powershell
+namespace="catalog"
+helm install catalog-service ./helm -f ./helm/values.yaml -n $namespace
 ```

@@ -1,0 +1,4 @@
+apiVersion: v2
+name: catalog
+description: Installs a catalog microservice
+version: 0.1.0
