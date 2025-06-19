@@ -21,5 +21,5 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Pack
-      run: dotnet pack src/Play.Catalog/ --configuration Release -p:RepositoryUrl=https://github.com/${{github.repository_owner}}/play.catalog -o packages
+      run: dotnet pack src/Play.Catalog.Contracts/ --configuration Release -p:RepositoryUrl=https://github.com/${{github.repository_owner}}/play.catalog -o packages
 
