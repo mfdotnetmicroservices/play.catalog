@@ -2,6 +2,7 @@
 
 Play Economy Catalog microservice
 
+<!-- :) -->
 
 # Repack and Republish the Package(Updated corrected!)
 ```bash
