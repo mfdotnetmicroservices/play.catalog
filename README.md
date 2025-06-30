@@ -3,10 +3,21 @@
 Play Economy Catalog microservice
 
 
+# Repack and Republish the Package(Updated corrected!)
+```bash
+version="1.0.5"
+owner="mfdotnetmicroservices"
+gh_pat="[PAT HERE]"
+dotnet pack src/Play.Catalog.Contracts/ --configuration Release -p:PackageVersion=$version -p:RepositoryUrl=https://github.com/$owner/play.catalog -o ../packages
+
+dotnet nuget push ../packages/Play.Catalog.Contracts.${version}.nupkg --api-key ${gh_pat} --source "github" --verbose
+```
+
+
 # Create and publish package
 ### For Windows (PowerShell): 
 ```powershell 
-$version="1.0.4"
+$version="1.0.5"
 $owner="mfdotnetmicroservices"
 $gh_pat="[PAT HERE]"
 
@@ -18,7 +29,7 @@ dotnet nuget push ..\packages\Play.Catalog.$version.nupkg --api-key $gh_pat --so
 
 ### For macOS
 ```bash
-version="1.0.4"
+version="1.0.5"
 owner="mfdotnetmicroservices"
 gh_pat="[PAT HERE]"
 
@@ -33,7 +44,7 @@ dotnet nuget push ../packages/Play.Catalog.${version}.nupkg --api-key ${gh_pat} 
 
 ### For Windows (PowerShell): 
 ```powershell 
-$version="1.0.4"
+$version="1.0.5"
 $owner="mfdotnetmicroservices"
 $gh_pat="[PAT HERE]"
 
@@ -46,7 +57,7 @@ dotnet nuget push ..\packages\Play.Catalog.Contracts.$version.nupkg --api-key $g
 
 ### For macOS
 ```bash
-version="1.0.4"
+version="1.0.5"
 owner="mfdotnetmicroservices"
 gh_pat="[PAT HERE]"
 
@@ -133,17 +144,14 @@ kubectl create namespace $namespace
 
 ## For Mac
 ```bash
-
 namespace="catalog"
 kubectl create namespace "$namespace"
-
 ```
 
 
 
 ## Creating the Azure Managed Identity and granting it access to Key Vault secrets
-
- ### Mac
+### Mac
 ```bash
 
 appnameRg="playeconomy"
@@ -166,7 +174,6 @@ appnameRg="playeconomy"
 
 
 export AKS_OIDC_ISSUER="$(az aks show --name "${appnamecluster}" --resource-group "${appnameRg}" --query "oidcIssuerProfile.issuerUrl" --output tsv)"
-
 
 az identity federated-credential create --name ${namespace} --identity-name "${namespace}" --resource-group "${appnameRg}" --issuer "${AKS_OIDC_ISSUER}" --subject system:serviceaccount:"${namespace}":"${namespace}-serviceaccount" --audience api://AzureADTokenExchange 
 ```
