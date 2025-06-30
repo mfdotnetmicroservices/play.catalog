@@ -185,3 +185,6 @@ az identity federated-credential create --name ${namespace} --identity-name "${n
 namespace="catalog"
 helm install catalog-service ./helm -f ./helm/values.yaml -n $namespace
 ```
+
+## Required repository secrets for GitHub workflow
+GH_PAT: Created in GitHub user profile --> Settings --> Developer settings --> Personal access token
