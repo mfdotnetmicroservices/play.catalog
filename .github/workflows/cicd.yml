@@ -81,6 +81,6 @@ jobs:
       with:
         secrets: |
           "GH_OWNER=${{github.repository_owner}}"
-          "GH_PAT_CATALOG=${{secrets.GH_PAT_CATALOG}}"
+          "GH_PAT=${{secrets.GH_PAT}}"
         tags: ${{env.APP_NAME}}.azurecr.io/play.catalog:${{ needs.generate-version.outputs.new_version }}
        
