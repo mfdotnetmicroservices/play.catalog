@@ -87,6 +87,9 @@ jobs:
         tenant-id: ${{secrets.AZURE_TENANT_ID}}
         # Azure subscriptionId
         subscription-id: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+
+    - name: Login to container registry
+      run: az acr login --name ${{ env.ACR_NAME }}
           
 
     - name: Build and push Docker image
@@ -96,4 +99,5 @@ jobs:
           "GH_OWNER=${{github.repository_owner}}"
           "GH_PAT=${{secrets.GH_PAT}}"
         tags: ${{env.ACR_NAME}}.azurecr.io/play.catalog:${{ needs.generate-version.outputs.new_version }}
+        push: true
        
