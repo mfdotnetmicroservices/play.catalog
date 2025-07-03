@@ -69,6 +69,7 @@ jobs:
     env:
       ACR_NAME: playeconomyacr
       APP_NAME: playeconomy
+      CLUSTER_NAME: playeconomy_cluster
       SERVICE_NAME: catalog
       HELM_CHART_VERSION: 0.1.0
 
