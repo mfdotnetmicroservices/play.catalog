@@ -165,6 +165,7 @@ IDENTITY_PRINCIPAL_ID=$(az identity show -g "$appnameRg" -n "$namespace" --query
 az keyvault set-policy -n "$appnamekv" --secret-permissions get list --spn "$IDENTITY_CLIENT_ID"
 ```
 
+<!-- :) -->
 
 ## Establish the federated identity credential
 ## For mac
