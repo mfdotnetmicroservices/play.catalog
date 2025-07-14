@@ -13,6 +13,7 @@ using MassTransit.Definition;
 using Play.Common.MassTransit;
 using Play.Common.Identity;
 using Play.Common.HealthChecks;
+using Play.Common.Logging;
 
 
 
@@ -69,6 +70,8 @@ namespace Play.Catalog.Service
 
             services.AddHealthChecks()
                     .AddMongodb();
+
+            services.AddSeqLogging(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
