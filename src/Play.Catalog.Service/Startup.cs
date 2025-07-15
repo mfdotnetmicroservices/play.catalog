@@ -8,8 +8,6 @@ using Microsoft.OpenApi.Models;
 using Play.Catalog.Service.Entities;
 using Play.Common.Settings;
 using Play.Common.MongoDB;
-using MassTransit;
-using MassTransit.Definition;
 using Play.Common.MassTransit;
 using Play.Common.Identity;
 using Play.Common.HealthChecks;
